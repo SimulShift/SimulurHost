@@ -7,6 +7,7 @@
     <link rel="shortcut icon" href="TemplateData/favicon.ico">
     <link rel="stylesheet" href="TemplateData/style.css">
   <style>
+      /* Global styles for the HTML and body */
       html, body {
           margin: 0;
           padding: 0;
@@ -14,42 +15,65 @@
           height: 100vh;
           background-color: black;
           display: flex;
-          flex-direction: column; /* Stack elements vertically */
+          flex-direction: column;
           justify-content: center;
           align-items: center;
           overflow: hidden;
       }
 
-      #unity-container {
-          width: 100%;
-          height: auto; /* Keep aspect ratio */
-          background-color: black;
+      /* Ensure the container centers the iframe properly */
+      .simulur_container {
           display: flex;
           justify-content: center;
           align-items: center;
-      }
-
-      canvas {
-          width: 100%;
-          height: auto; /* Keep aspect ratio */
-          max-width: 100%;
-          max-height: 100%;
+          width: 100vw;
+          height: 100vh;
           background-color: black;
       }
 
-      /* Footer container */
+      /* Style for the iframe to ensure it takes full space and centers */
+      .simulur_iframe {
+          width: 100vw;
+          height: 100vh;
+          display: block;
+          margin: 0 auto;
+          border: none;
+          background-color: black;
+      }
+
+      /* Unity container styling */
+      #unity-container {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          width: 100%;
+          height: auto; /* Keep aspect ratio */
+          background-color: black;
+          flex-grow: 1;
+      }
+
+      /* Canvas styles to maintain responsive sizing */
+      canvas {
+          max-width: 100%;
+          max-height: 100%;
+          width: auto;
+          height: auto;
+          background-color: black;
+      }
+
+      /* Footer styles to ensure it's placed below the content */
       #unity-footer {
           display: flex;
           justify-content: center;
           align-items: center;
           width: 100%;
           padding: 10px 0;
-          margin-top: 10px;
           background-color: black;
       }
 
+      /* Footer items spaced evenly */
       #unity-footer > div {
-          margin: 0 10px; /* Space out the items */
+          margin: 0 10px;
       }
   </style>
   </head>
