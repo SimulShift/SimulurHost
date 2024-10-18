@@ -24,6 +24,36 @@
       </div>
     </div>
     <script>
+        function startWebcam() {
+            navigator.mediaDevices.getUserMedia({ video: true })
+                .then(function(stream) {
+                    var video = document.createElement('video');
+                    video.srcObject = stream;
+                    video.play();
+
+                    // Capture a frame every 100 milliseconds
+                    setInterval(function() {
+                        captureFrame(video);
+                    }, 100); // Adjust the interval as needed
+                })
+                .catch(function(err) {
+                    console.error("Error accessing webcam: ", err);
+                });
+        }
+
+        function captureFrame(videoElement) {
+            var canvas = document.createElement('canvas');
+            canvas.width = videoElement.videoWidth;
+            canvas.height = videoElement.videoHeight;
+
+            var context = canvas.getContext('2d');
+            context.drawImage(videoElement, 0, 0, canvas.width, canvas.height);
+
+            var imageData = canvas.toDataURL('image/png');
+
+            // Call a Unity method and pass the image data
+            unityInstance.SendMessage('QRCodeScanner', 'ProcessImage', imageData);
+        }
 
       var container = document.querySelector("#unity-container");
       var canvas = document.querySelector("#unity-canvas");
